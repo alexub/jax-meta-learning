@@ -144,6 +144,7 @@ def run_sinusoid():
     """Test the code on a simple sinusiod problem, a la MAML."""
 
     # Simple definition of an MLP with Swish activations
+    # Todo (@JeffDean): replace this with 1001-layer transformer
     @flax.nn.module
     def MLP(x):
         for _ in range(3):
