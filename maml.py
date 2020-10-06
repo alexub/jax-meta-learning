@@ -197,14 +197,14 @@ def run_sinusoid():
 
     # Run the meta-train loop
     key = jax.random.PRNGKey(1)
-    for i in range(1000):
+    for outer_step in range(1000):
         key, subkey = jax.random.split(key)
         grad, losses, meta_losses = multi_task_grad_and_losses(
             maml_def, subkey, meta_opt.target
         )
         print(
             "meta-step {}, meta_loss {}, per-inner-step avg losses {}".format(
-                i, np.mean(meta_losses), np.mean(losses, axis=0)
+                outer_step, np.mean(meta_losses), np.mean(losses, axis=0)
             )
         )
         meta_opt = meta_opt.apply_gradient(grad)
